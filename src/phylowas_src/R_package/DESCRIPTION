@@ -1,0 +1,12 @@
+Package: phyloWAS
+Title: phyloWAS
+Version: 0.0.0.9000
+Author: : Brianna Chrisman <briannac@stanford.edu>
+Maintainer: Brianna Chrisman <briannac@stanford.edu>
+Description: Phylogeny-based MWAS of microbiome.
+Depends: R (>= 3.4.0)
+License: GPL (>=2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Suggests: testthat

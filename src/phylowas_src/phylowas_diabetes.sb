@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH --job-name=phyloWAS_diabetes
+#SBATCH --partition=dpwall
+#SBATCH --mem=60GB
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=15
+#SBATCH --nodes=1
+#SBATCH --output=/oak/stanford/groups/dpwall/users/briannac/logs/phyloWAS_diabetes.out
+#SBATCH --error=/oak/stanford/groups/dpwall/users/briannac/logs/phyloWAS_diabetes.err
+#SBATCH --time=2:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=briannac@stanford.edu
+
+export SCRIPT=$MY_SCRATCH/phyloWAS/scripts/phyloWAS_diabetes.R
+
+
+## --------------------------------------
+## Preparation
+## --------------------------------------
+
+# load the Spark module
+module load R/3.5.1
+ml gcc
+
+## --------------------------------------
+## Submit a task to the cluster
+## --------------------------------------
+Rscript $SCRIPT
+

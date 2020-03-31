@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH --job-name=preprocess_crohns
+#SBATCH --partition=dpwall
+#SBATCH --mem=100GB
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=15
+#SBATCH --nodes=1
+#SBATCH --output=/oak/stanford/groups/dpwall/users/briannac/logs/preprocess_crohns.out
+#SBATCH --error=/oak/stanford/groups/dpwall/users/briannac/logs/preprocess_crohns.err
+#SBATCH --time=5:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=briannac@stanford.edu
+
+export SCRIPT=$MY_SCRATCH/phyloWAS/scripts/preprocess_crohns.R
+
+
+## --------------------------------------
+## Preparation
+## --------------------------------------
+
+# load the Spark module
+module load R/3.5.1
+ml gcc
+
+## --------------------------------------
+## Submit a task to the cluster
+## --------------------------------------
+Rscript $SCRIPT
+

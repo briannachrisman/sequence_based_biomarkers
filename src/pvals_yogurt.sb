@@ -1,0 +1,32 @@
+#!/bin/bash
+#SBATCH --job-name=pvals_yogurt
+#SBATCH --partition=dpwall
+#SBATCH --mem=60GB
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=15
+#SBATCH --nodes=1
+#SBATCH --output=/oak/stanford/groups/dpwall/users/briannac/logs/pvals_yogurt.out
+#SBATCH --error=/oak/stanford/groups/dpwall/users/briannac/logs/pvals_yogurt.err
+#SBATCH --time=10:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=briannac@stanford.edu
+
+export SCRIPT=$MY_SCRATCH/phyloWAS/scripts/pvals_yogurt.R
+
+
+## --------------------------------------
+## Preparation
+## --------------------------------------
+
+# load the Spark module
+module load R/3.5.1
+ml gcc
+
+## --------------------------------------
+## Submit a task to the cluster
+## --------------------------------------
+for msa in DECIPHER
+do
+echo running $msa
+Rscript $SCRIPT $msa
+done
