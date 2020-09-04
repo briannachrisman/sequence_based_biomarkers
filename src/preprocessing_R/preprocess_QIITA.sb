@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH --job-name=preprocess_cardiocolubmia
+#SBATCH --partition=dpwall,owners
+#SBATCH --mem=128GB
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --nodes=1
+#SBATCH --output=/oak/stanford/groups/dpwall/users/briannac/logs/preprocess_cardiocolubmia.out
+#SBATCH --error=/oak/stanford/groups/dpwall/users/briannac/logs/preprocess_cardiocolubmia.err
+#SBATCH --time=5:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=briannac@stanford.edu
+
+export SCRIPT=$MY_SCRATCH/phyloWAS/scripts/preprocess_QIITA.R
+
+
+## --------------------------------------
+## Preparation
+## --------------------------------------
+
+# load the Spark module
+module load R/3.5.1
+ml gcc
+
+## --------------------------------------
+## Submit a task to the cluster
+## --------------------------------------
+Rscript $SCRIPT
+

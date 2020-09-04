@@ -14,7 +14,9 @@ with open(person_taxa_filename, 'r') as f:
     for line in f:
         people.append(line.strip().split('\t', maxsplit=1)[0])
 
+print((person_taxa_filename))
 person_taxa = np.loadtxt(person_taxa_filename, delimiter='\t', skiprows=1, usecols=list(range(1, len(taxa)+1)))
+
 
 taxa = []
 with open(taxa_variant_filename, 'r') as f:
